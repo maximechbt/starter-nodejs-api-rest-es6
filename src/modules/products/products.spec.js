@@ -1,14 +1,7 @@
 import chai, { expect } from 'chai';
-import server from '../index';
-import ProductModule from '../modules/products'
-
-let mongoServer;
+import server from '../../index';
 
 chai.use(require('chai-http'));
-
-let Product = ProductModule.Model;
-
-const should = chai.should();
 
 describe('Products', () => {
 
