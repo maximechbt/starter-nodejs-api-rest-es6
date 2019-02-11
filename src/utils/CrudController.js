@@ -1,5 +1,6 @@
 import {ErrorResponse, SuccessResponse} from "./GenericResponse";
 import {setCrudRoutes} from "./CrudRoutes";
+import {formatQuery} from "./request.utils";
 
 export default (Model) => {
     return class CrudController {
@@ -11,12 +12,20 @@ export default (Model) => {
         }
 
         /**
-         * Find all document of Model
+         * Find all documents of Model
          * @param req
          * @param res
+         *
+         * Example params to use :
+         * ?page={number}
+         * ?limit={number}
+         * ?[attributes]=yourvalue
          */
         findAll(req, res) {
-            Model.find()
+            const { filter, limit, offset } = formatQuery(Model, req.query, 100);
+            Model.find(filter)
+                .limit(limit)
+                .offset(offset)
                 .then(data => res.status(200).send(SuccessResponse(data)))
                 .catch(err => res.status(500).send(ErrorResponse(err)))
         }
