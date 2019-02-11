@@ -1,5 +1,6 @@
 import chai, { expect } from 'chai';
 import server from '../../index';
+import {PREFIXS_ROUTE_NAME} from "../../routes";
 
 chai.use(require('chai-http'));
 
@@ -8,7 +9,7 @@ describe('Products', () => {
     describe('/GET product', () => {
         it('it should GET all the products', (done) => {
             chai.request(server)
-                .get('/products')
+                .get(PREFIXS_ROUTE_NAME.PRODUCTS)
                 .end((err, res) => {
                     expect(res.status).to.equal(200);
                     expect(res.body.success).to.equal(true);
@@ -41,7 +42,7 @@ describe('Products', () => {
                 title: "test",
             };
             chai.request(server)
-                .post('/products')
+                .post(PREFIXS_ROUTE_NAME.PRODUCTS)
                 .send(product)
                 .end((err, res) => {
                     expect(res.status).to.equal(200);
