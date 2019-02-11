@@ -1,4 +1,4 @@
-import {ErrorResponse, SuccessResponse} from "./GenericData";
+import {ErrorResponse, SuccessResponse} from "./GenericResponse";
 
 export default (Model) => {
     return class CrudController {
