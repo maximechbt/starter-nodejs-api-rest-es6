@@ -23,9 +23,7 @@ export default (Model) => {
          */
         findAll(req, res) {
             const { filter, limit, offset } = formatQuery(Model, req.query, 100);
-            Model.find(filter)
-                .limit(limit)
-                .offset(offset)
+            Model.find(filter, null, { limit, skip: offset })
                 .then(data => res.status(200).send(SuccessResponse(data)))
                 .catch(err => res.status(500).send(ErrorResponse(err)))
         }

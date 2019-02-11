@@ -3,7 +3,7 @@ import {ROUTES_MODULES} from "./routes";
 import cors from "cors";
 import morgan from "morgan";
 import bodyParser from "body-parser";
-import database from "./database";
+import {getMongoose, mockMongoose} from "./database";
 
 /**
  * List of middleware that will be launched at project launch.
@@ -22,25 +22,24 @@ const MIDDLEWARES = [
  * This class is used to initialize the express application
  */
 class App {
-    constructor () {
+    constructor() {
         this.express = express();
-        this.setupBDD(() => {
-            this.setupMiddlewares();
-            this.setupRoutes()
-        })
+        this.setupMiddlewares();
+        this.setupBDD();
+        this.setupRoutes();
     }
 
     /**
-     * Connect to the database and launch the other services defined in the callback if it is successful.
+     * Connect to the database
      * @param callback
      */
-    setupBDD(callback) {
+    setupBDD = async () => {
+        const database = process.env.NODE_ENV === "test" ? await mockMongoose() : getMongoose();
         database.on('error', console.error.bind(console, 'Erreur lors de la connexion'));
         database.once('open', function () {
             console.log("Connexion à la base OK");
-            callback();
         });
-    }
+    };
 
     /**
      * Call the different middlewares defined in the constant MIDDLEWARES
@@ -52,7 +51,7 @@ class App {
     /**
      * setup the routes defined in the routes.js file
      */
-    setupRoutes () {
+    setupRoutes() {
         ROUTES_MODULES.forEach(route => this.express.use(route.prefix, route.target));
     }
 }
