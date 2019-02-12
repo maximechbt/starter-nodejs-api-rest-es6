@@ -6,7 +6,6 @@ import { version } from "../../../package";
 chai.use(require('chai-http'));
 
 describe('Commons', () => {
-
     describe('/GET /', () => {
         it('it should GET the api version', (done) => {
             chai.request(server)

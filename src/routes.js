@@ -1,4 +1,4 @@
-import CommonsModule from "./modules/commons";
+import CommonsModule from "./modules/common";
 import ProductModule from "./modules/products";
 
 

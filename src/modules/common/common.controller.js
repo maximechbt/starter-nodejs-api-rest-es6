@@ -1,6 +1,6 @@
 import {version} from "../../../package";
 
-export default class CommonsController {
+export default class CommonController {
   static showVersion(req, res) {
         res.json({
             version
