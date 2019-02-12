@@ -11,12 +11,12 @@ import {getMongoose, mockMongoose} from "./database";
  */
 const MIDDLEWARES = [
     cors(),
-    morgan('combined'),
+    process.env.NODE_ENV !== "test" ? morgan('combined') : null,
     bodyParser.json(),
     bodyParser.urlencoded({
         extended: false
     })
-];
+].filter(Boolean);
 
 /**
  * This class is used to initialize the express application
