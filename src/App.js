@@ -4,6 +4,7 @@ import cors from "cors";
 import morgan from "morgan";
 import bodyParser from "body-parser";
 import {getMongoose, mockMongoose} from "./database";
+import combine from './utils/combineMiddleware.utils';
 
 /**
  * List of middleware that will be launched at project launch.
@@ -45,7 +46,7 @@ class App {
      * Call the different middlewares defined in the constant MIDDLEWARES
      */
     setupMiddlewares() {
-        MIDDLEWARES.forEach(middleware => this.express.use(middleware));
+        this.express.use(combine(MIDDLEWARES));
     }
 
     /**
