@@ -1,6 +1,6 @@
-import {ErrorResponse, SuccessResponse} from "./GenericResponse";
+import {ErrorResponse, SuccessResponse} from "../../constants/GenericResponse.constant";
 import {setCrudRoutes} from "./CrudRoutes";
-import {formatQuery} from "./request.utils";
+import {formatQuery} from "../request.utils";
 
 export default (Model) => {
     return class CrudController {

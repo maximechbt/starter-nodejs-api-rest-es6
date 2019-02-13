@@ -12,6 +12,8 @@ const crudMiddleware = {
         next();
     }
 };
+
+
 const controller = new ProductController(router, crudMiddleware);
 
 export default router;
