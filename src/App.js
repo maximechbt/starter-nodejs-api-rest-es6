@@ -4,7 +4,7 @@ import cors from "cors";
 import morgan from "morgan";
 import bodyParser from "body-parser";
 import {getMongoose, mockMongoose} from "./database";
-import combine from './utils/combineMiddleware.utils';
+import combine from './utils/combine_middleware.utils';
 
 /**
  * List of middleware that will be launched at project launch.

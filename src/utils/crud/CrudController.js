@@ -1,4 +1,4 @@
-import {ErrorResponse, SuccessResponse} from "../../constants/GenericResponse.constant";
+import {ErrorResponse, SuccessResponse} from "../../constants/response.constant";
 import {setCrudRoutes} from "./CrudRoutes";
 import {formatQuery} from "../request.utils";
 
