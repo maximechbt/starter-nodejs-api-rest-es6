@@ -5,9 +5,9 @@ import {formatQuery} from "./request.utils";
 export default (Model) => {
     return class CrudController {
 
-        constructor(router) {
+        constructor(router, middleware = {}) {
             if(router) {
-                setCrudRoutes(router, this);
+                setCrudRoutes(router, middleware, this);
             }
         }
 
