@@ -15,10 +15,10 @@
  */
 export const setCrudRoutes = (router, middleware, controller) => {
     router.get('/:id', middleware.find || pass, controller.find);
-    router.put('/:id', middleware.find || pass, controller.update);
-    router.delete('/:id', middleware.find || pass, controller.delete);
-    router.get('/', middleware.find || pass, controller.findAll);
-    router.post('/', middleware.find || pass, controller.create);
+    router.put('/:id', middleware.update || pass, controller.update);
+    router.delete('/:id', middleware.delete || pass, controller.delete);
+    router.get('/', middleware.findAll || pass, controller.findAll);
+    router.post('/', middleware.create || pass, controller.create);
 };
 
 const pass = (req, res, next) => next();
